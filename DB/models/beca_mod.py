@@ -38,12 +38,12 @@ class edit_soli_bec(BaseModel):
     boleta: int
     beca_solicitada: str
 
-    tipo_comprobante: str
-    conf_tipo_comprobante: float
-    validez_comprobante: str
-    conf_validez_comprobante: float
+   # tipo_comprobante: str
+   # conf_tipo_comprobante: float
+   # validez_comprobante: str
+   # conf_validez_comprobante: float
 
-    tipo_conf_credencial: List[Tuple[str,float]]
-    validez_conf_credencial: List[Tuple[str,float]]
+   # tipo_conf_credencial: List[Tuple[str,float]]
+   # validez_conf_credencial: List[Tuple[str,float]]
     
     beca_aprobada: bool

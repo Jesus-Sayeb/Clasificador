@@ -33,7 +33,7 @@ def validar_fecha(fecha_str, fecha_referencia_str):
             return "INVALIDO"
             #return False, fecha_extraida.strftime('%d-%m-%Y')
     except ValueError:
-        return "Formato de fecha no válido."
+        return "Formato de fecha no válido, revisar manualmente"
 
 
 def obtener_coordenadas(imagen):
@@ -78,7 +78,7 @@ def imagen(source0):
         #print(type(extracted_text))
         return extracted_text
     else:
-        return "No se encontraron fechas en la imagen"
+        return "No se encontraron fechas en la imagen, revisar manualmente"
 
 #fechaConvertida = convertir_fecha(imagen(path))
 """

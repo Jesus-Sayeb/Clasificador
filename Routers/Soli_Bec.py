@@ -164,8 +164,8 @@ async def create_upload_file(file: UploadFile = File(...)):
     )
 
     # Guardar en MongoDB
-    db = client.beca
-    db.solicitudes_beca.insert_one(solicitud_beca.dict())
+   # db = client.beca
+   # db.solicitudes_beca.insert_one(solicitud_beca.dict())
     
     return { "filename": file.filename, 
             "message": "Archivo PDF recibido y almacenado correctamente",
