@@ -21,7 +21,9 @@ def path_tipo_comp(source0): # conf = 0.81
     return results0
 
 # Funcion que extrae el resultado del tipo de comprobante y su confianza 
-def clasificacion_tipo_comp(results0):    
+def clasificacion_tipo_comp(results0):  
+    class_name = "sin deteccion tipo de comprobante, revisar manualmente"
+    conf_score = 100.0 
     for result in results0:
         for i in range(len(result.boxes)):
             class_name = result.names[result.boxes.cls[i].tolist()] # Obtener el nombre de la clase para cada detección
@@ -37,7 +39,9 @@ def path_validez_comp(source0):
     return results1
 
 # Funcion que extrae el resultado de validez de comprobante y su confianza
-def clasificacion_validez_comp(results1):    
+def clasificacion_validez_comp(results1):  
+    class_name = "sin deteccion validez de comprobante, revisar manualmente"
+    conf_score = 100.0   
     for result in results1:
         for i in range(len(result.boxes)):
             class_name = result.names[result.boxes.cls[i].tolist()] # Obtener el nombre de la clase para cada detección

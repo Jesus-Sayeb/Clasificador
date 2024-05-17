@@ -164,8 +164,8 @@ async def create_upload_file(file: UploadFile = File(...)):
     )
 
     # Guardar en MongoDB
-   # db = client.beca
-   # db.solicitudes_beca.insert_one(solicitud_beca.dict())
+    # db = client.beca
+    # db.solicitudes_beca.insert_one(solicitud_beca.dict())
     
     return { "filename": file.filename, 
             "message": "Archivo PDF recibido y almacenado correctamente",
@@ -207,10 +207,11 @@ async def read_solicitud(alumno_apellido_paterno: str, alumno_apellido_materno: 
         raise HTTPException(status_code=404, detail=f"No se encontró la solicitud con los datos ingresados")
 #----------------------------------------------------------
 @router.put("/Editar_Solicitud/",
-            summary="Este endpoint permite buscar una solicitud de beca específica en la base de datos y editarla",
-            description=''' Solo se permite editar los datos del alumno, los resultados de la clasificacion y si la beca fue aprobada o no \n\n
-            En dado caso que quiera editar el PDF almacenado de la solicitud debera elimnar la solicitud previa y subir de nuevo el PDF.
-''')
+            summary="Este endpoint permite buscar una solicitud de beca específica en la base de datos y editar ciertos campos",
+            description=''' .\n\n
+            Solo se permite editar los datos del alumno y si la beca fue aprobada o no. \n \n
+            En dado caso que quiera editar el PDF almacenado de la solicitud, debera elimnar la solicitud previa y subir de nuevo el PDF. \n \n
+            Los resultados de los modelos NO se pueden editar ya que esa informacion sirve para futuras mejoras en dichos modelos. ''')
 async def update_beca(alumno_apellido_paterno: str, alumno_apellido_materno: str, boleta: int, solicitud_beca: edit_soli_bec):
     db = client.beca
     # Buscar el documento que coincida con los tres campos
@@ -226,14 +227,13 @@ async def update_beca(alumno_apellido_paterno: str, alumno_apellido_materno: str
     )
     return {"message": "Solicitud de beca actualizada con éxito"}
 #----------------------------------------------------------
-
 @router.delete("/Eliminar_Solicitud")
 async def delete_solicitud(boleta: int, alumno_apellido_paterno: str, alumno_apellido_materno: str):
     db = client.beca
     result = db.solicitudes_beca.delete_one({
         "boleta": boleta,
-        "apellido_alumno": alumno_apellido_paterno,
-        "nombre_alumno": alumno_apellido_materno
+        "alumno_apellido_paterno": alumno_apellido_paterno,
+        "alumno_apellido_materno": alumno_apellido_materno
     })
 
     if result.deleted_count == 0:
